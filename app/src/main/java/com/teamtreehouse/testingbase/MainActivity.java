@@ -16,11 +16,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    LinearLayout linearLayout;
-    EditText editText;
-    TextView textView;
-    Spinner colorSpinner;
-    Button launchActivityButton;
+    private LinearLayout linearLayout;
+    private EditText editText;
+    private TextView textView;
+    private Spinner colorSpinner;
+    private Button launchActivityButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
