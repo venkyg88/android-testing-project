@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainActivityView {
     private LinearLayout linearLayout;
     private EditText editText;
     private TextView textView;
@@ -80,5 +80,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void changeTextViewText(String text) {
+        textView.setText(text);
+    }
+
+    @Override
+    public void changeBackGroundColor(int color) {
+        linearLayout.setBackgroundColor(color);
+    }
+
+    @Override
+    public void launchOtherActivity(Class activity) {
+        Intent intent = new Intent(MainActivity.this, activity);
+        startActivity(intent);
     }
 }
