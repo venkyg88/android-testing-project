@@ -16,11 +16,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements MainActivityView {
-    private LinearLayout linearLayout;
-    private EditText editText;
-    private TextView textView;
-    private Spinner colorSpinner;
-    private Button launchActivityButton;
+    protected LinearLayout linearLayout;
+    protected EditText editText;
+    protected TextView textView;
+    protected Spinner colorSpinner;
+    protected Button launchActivityButton;
 
     private MainActivityPresenter presenter;
 
