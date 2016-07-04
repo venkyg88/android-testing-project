@@ -4,41 +4,27 @@ import android.graphics.Color;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.*;
 
 /**
  * Created by venkatgonuguntala on 7/4/16.
  */
+@RunWith(MockitoJUnitRunner.class)              //now Instead of using default JUnitRunner we are using Mockito runner.
 public class MainActivityPresenterTest {
 
     MainActivityPresenter presenter;
+
+    @Mock                                       // using Mockito to Mock
     MainActivityView view;
 
-
-    // Why?? It lets our app test without activity!!
-    public class MockedView implements MainActivityView {
-        String textViewText;
-        int colorT;
-        Class activityT;
-        @Override
-        public void changeTextViewText(String text) {
-            textViewText = text;
-        }
-
-        @Override
-        public void changeBackGroundColor(int color) {
-            colorT = color;
-        }
-
-        @Override
-        public void launchOtherActivity(Class activity) {
-            activityT = activity;
-        }
-    }
     @Before
     public void setUp() throws Exception {
-        view = new MockedView();
+
         presenter = new MainActivityPresenter(view);
     }
 
@@ -51,7 +37,8 @@ public class MainActivityPresenterTest {
         presenter.editTextUpdated(givenString);
 
         //assert
-        assertEquals(givenString, ((MockedView)view).textViewText);
+        Mockito.verify(view).changeTextViewText(givenString);
+
     }
 
     @Test
@@ -64,7 +51,7 @@ public class MainActivityPresenterTest {
         presenter.colorSelected(index);
 
         //assert
-        assertEquals(givenColor, ((MockedView)view).colorT);
+        Mockito.verify(view).changeBackGroundColor(givenColor);
 
     }
 
@@ -78,7 +65,7 @@ public class MainActivityPresenterTest {
         presenter.launchOtherActivityButtonClicked(clazz);
 
         //assert
-        assertEquals(clazz, ((MockedView)view).activityT);
+        Mockito.verify(view).launchOtherActivity(clazz);
     }
 
 }
