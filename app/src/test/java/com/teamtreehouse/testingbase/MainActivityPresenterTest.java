@@ -1,5 +1,7 @@
 package com.teamtreehouse.testingbase;
 
+import android.graphics.Color;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,6 +19,8 @@ public class MainActivityPresenterTest {
     // Why?? It lets our app test without activity!!
     public class MockedView implements MainActivityView {
         String textViewText;
+        int colorT;
+        Class activityT;
         @Override
         public void changeTextViewText(String text) {
             textViewText = text;
@@ -24,12 +28,12 @@ public class MainActivityPresenterTest {
 
         @Override
         public void changeBackGroundColor(int color) {
-
+            colorT = color;
         }
 
         @Override
         public void launchOtherActivity(Class activity) {
-
+            activityT = activity;
         }
     }
     @Before
@@ -52,12 +56,29 @@ public class MainActivityPresenterTest {
 
     @Test
     public void colorSelected() throws Exception {
+        //arrange
+        int index = 2;
+        int givenColor = Color.GREEN;
+
+        //act
+        presenter.colorSelected(index);
+
+        //assert
+        assertEquals(givenColor, ((MockedView)view).colorT);
 
     }
 
     @Test
     public void launchOtherActivityButtonClicked() throws Exception {
 
+        //arrange
+        Class clazz = OtherActivity.class;
+
+        //act
+        presenter.launchOtherActivityButtonClicked(clazz);
+
+        //assert
+        assertEquals(clazz, ((MockedView)view).activityT);
     }
 
 }
